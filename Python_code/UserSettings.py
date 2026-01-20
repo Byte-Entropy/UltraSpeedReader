@@ -9,10 +9,22 @@ class SettingsScreen(Screen):
         app_dir = App.get_running_app().user_data_dir
         return os.path.join(app_dir, 'config.json')
 
-    def save_settings(self, wpm_value):
-        config_data = {'wpm': int(wpm_value)}
+    def save_settings(self, wpm_value=None, index=None):
+        # Open existing config or create default
+        if not os.path.exists(self.get_config_path()):
+            self.create_default_config()
+
+        with open(self.get_config_path(), 'r') as f:
+            data = json.load(f)
+            
+        if wpm_value is not None:
+            data['wpm'] = int(wpm_value)
+            
+        if index is not None:
+            data['Index'] = int(index)
+
         with open(self.get_config_path(), 'w') as f:
-            json.dump(config_data, f)
+            json.dump(data, f)
 
     def load_settings(self):
         path = self.get_config_path()
@@ -24,7 +36,7 @@ class SettingsScreen(Screen):
     def on_start_button(self):
         try:
             wpm = self.ids.wpm_input.text
-            self.save_settings(wpm)
+            self.save_settings(wpm_value=wpm)
         except (ValueError, TypeError):
             wpm = 260  # Fallback to default if conversion fails
 
@@ -36,5 +48,12 @@ class SettingsScreen(Screen):
         app.root.get_screen('reader').setup_reader(self.ids.user_input.text, wpm)
         app.root.current = 'reader'
 
+    def create_default_config(self):
+        default_config = {'wpm': 260}
+        with open(self.get_config_path(), 'w') as f:
+            json.dump(default_config, f)
+
     def on_exit_button(self):
         App.get_running_app().stop()
+            
+        

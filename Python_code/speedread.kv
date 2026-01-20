@@ -4,6 +4,11 @@
         padding: 20
         spacing: 10
         
+        Button:
+            text: "Exit"
+            size_hint_x: 0.2
+            size_hint_y: 0.05
+            on_release: root.on_exit_button()
         TextInput:
             id: user_input
             hint_text: "Paste your text here..."
@@ -39,5 +44,22 @@
             text: "Stop / Back"
             size_hint_y: 0.2
             on_release: 
-                root.stop_reader()
+                root.on_stop_button()
                 app.root.current = 'settings'
+        BoxLayout:
+            orientation: 'horizontal'
+            padding: 20
+            Slider:
+                id: speed_slider
+                min: 50
+                max: 1000
+                value: 260
+                size_hint_y: 0.1
+                size_hint_x: 0.7
+                on_value: root.on_speed_change(self.value)
+            Label:
+                text: "WPM: " + str(int(speed_slider.value))
+                #size_hint_x: 0.3 Give it a bit of specific width
+                size_hint_y: 0.1
+
+        
