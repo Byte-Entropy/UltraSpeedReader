@@ -1,0 +1,43 @@
+<SettingsScreen>:
+    BoxLayout:
+        orientation: 'vertical'
+        padding: 20
+        spacing: 10
+        
+        TextInput:
+            id: user_input
+            hint_text: "Paste your text here..."
+            size_hint_y: 0.7
+            
+        BoxLayout:
+            size_hint_y: 0.1
+            spacing: 10
+            
+            Label:
+                text: "WPM:"
+                size_hint_x: 0.2
+                
+            TextInput:
+                id: wpm_input
+                text: "260"  # Default visual value
+                multiline: False
+                input_filter: 'int'
+                
+        Button:
+            text: "Start Reading"
+            size_hint_y: 0.2
+            on_release: root.on_start_button()
+
+<ReaderScreen>:
+    BoxLayout:
+        orientation: 'vertical'
+        Label:
+            text: root.display_text
+            font_size: '45sp'
+            halign: 'center'
+        Button:
+            text: "Stop / Back"
+            size_hint_y: 0.2
+            on_release: 
+                root.stop_reader()
+                app.root.current = 'settings'
