@@ -11,7 +11,7 @@ A Python-based speed reading application built with Kivy, designed to help users
 
 ### 🚀 Phase 2: Core Features
 
-- [ ] **Pause / Resume**: Pause and Resume Buttons with implementation.
+- [x] **Pause / Resume**: Pause and Resume Buttons with implementation.
 - [ ] **Soft Start**: Logarythm based start, with dynamicly updating speeds for text display.
 - [ ] **Smart Resume**: specific implementation to save the current word index in `config.json` and resume reading from that exact spot.
 - [ ] **Punctuation Pacing**: Implement variable delays for punctuation (e.g., longer pauses for periods `.`, medium for semi-colons `;`, short for commas `,`) to improve comprehension.
