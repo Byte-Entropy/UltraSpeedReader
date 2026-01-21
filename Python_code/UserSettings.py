@@ -53,6 +53,7 @@ class SettingsScreen(Screen):
         with open(self.get_config_path(), 'w') as f:
             json.dump(default_config, f)
 
+    
     def on_exit_button(self):
         App.get_running_app().stop()
             

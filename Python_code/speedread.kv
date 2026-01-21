@@ -42,12 +42,21 @@
             text: root.display_text
             font_size: '45sp'
             halign: 'center'
-        Button:
-            text: "Stop / Back"
-            size_hint_y: 0.2
-            on_release: 
-                root.on_stop_button()
-                app.root.current = 'settings'
+        
+        BoxLayout:
+            orientation: 'horizontal'
+            padding: 20
+            spacing: 10
+            Button:
+                text: "Pause"
+                size_hint_y: 0.2
+                on_release: root.on_pause_button()
+            Button:
+                text: "Stop / Back"
+                size_hint_y: 0.2
+                on_release: 
+                    root.on_stop_button()
+                    app.root.current = 'settings'
         BoxLayout:
             orientation: 'horizontal'
             padding: 20

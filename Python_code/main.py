@@ -7,8 +7,7 @@ from visualizer import ReaderScreen
 
 class SpeedReadApp(App):
     def build(self):
-        # Explicitly load KV file
-        Builder.load_file('speedread.kv')
+        #Builder.load_file('speedread.kv')
         
         sm = ScreenManager()
         
