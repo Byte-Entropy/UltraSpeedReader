@@ -14,7 +14,7 @@
         TextInput:
             id: user_input
             hint_text: "Paste your text here..."
-            size_hint_y: 0.7
+            size_hint_y: 0.4
             
         BoxLayout:
             size_hint_y: 0.1
@@ -23,7 +23,6 @@
             Label:
                 text: "WPM:"
                 size_hint_x: 0.2
-                
             TextInput:
                 id: wpm_input
                 text: "260"  # Default visual value
@@ -34,7 +33,21 @@
             text: "Start Reading"
             size_hint_y: 0.2
             on_release: root.on_start_button()
+        Label:
+            text: "Recent Texts:"
+            size_hint_y: 0.05
+            halign: 'left'
+            text_size: self.size
 
+        ScrollView:
+            size_hint_y: 0.25
+            bar_width: 10
+            
+            BoxLayout:
+                id: history_container
+                orientation: 'vertical'
+                size_hint_y: None
+                height: self.minimum_height
 <ReaderScreen>:
     BoxLayout:
         orientation: 'vertical'
